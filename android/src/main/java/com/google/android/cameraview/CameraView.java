@@ -623,6 +623,13 @@ public class CameraView extends FrameLayout {
             }
         }
 
+        @Override
+        public void onCameraUpdated(long currentTime) {
+            for(Callback callback : mCallbacks) {
+                callback.onCameraUpdated(CameraView.this, currentTime);
+            }
+        }
+
         public void reserveRequestLayoutOnOpen() {
             mRequestLayoutOnOpen = true;
         }
@@ -732,6 +739,16 @@ public class CameraView extends FrameLayout {
          * @param data       JPEG data.
          */
         public void onPictureTaken(CameraView cameraView, byte[] data, int deviceOrientation) {
+        }
+
+        /**
+         * Called every 100 millisecond
+         *
+         * @param cameraView The assorcied {@link CameraView}
+         * @param currentTime Current time in record
+         */
+
+        public void onCameraUpdated(CameraView cameraView, long currentTime) {
         }
 
         /**
